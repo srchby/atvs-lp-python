@@ -1,7 +1,7 @@
 def lastSqr(odd):
     pred = odd - 1
-    lastOdd = odd + 2
-    return (pred * pred) - lastOdd
+    nextOdd = odd + 2
+    return (pred ** 2) - nextOdd
 
 while (True):
     odd = int(input("Insira número impar: "))

@@ -6,7 +6,6 @@ def carRental(kilometers, days):
         totalPrice = 90 * days
         return totalPrice
     
-print(f"Insira Quilomêtros andados e dias em que o carro foi usado: ")
-kilometers = float(input())
-days = input(input())
+kilometers = float(input("Insira quilomêtros andados: "))
+days = int(input("E quantos dias em que o carro foi usado: "))
 print(f"Preço total a pagar: {carRental(kilometers, days)}")
