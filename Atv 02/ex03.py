@@ -1,9 +1,9 @@
 ROWS = 5
 COLUMNS = 5
-map = [['L' for _ in range(COLUMNS)] for _ in range(ROWS)]
+seat_map = [['L' for _ in range(COLUMNS)] for _ in range(ROWS)]
 
 def show_seats():
-    for i, row in enumerate(map):
+    for i, row in enumerate(seat_map):
         print(" ".join(row))
     print("\nLegenda: 'L' = Disponível | 'X' = Não Disponível")
     
@@ -11,10 +11,10 @@ def book_seat(seat):
     row = int(seat[0]) - 1
     col = int(seat[1]) - 1
     try:
-        if map[row][col] == "X":
+        if seat_map[row][col] == "X":
             print(f"Assento {seat} já reservado.")
         else:
-            map[row][col] = "X"
+            seat_map[row][col] = "X"
             print(f"Assento {seat} reservado.")
     except (ValueError, IndexError):
         print("Assento inválido.")
@@ -23,10 +23,10 @@ def cancel_seat(seat):
     row = int(seat[0]) - 1
     col = int(seat[1]) - 1
     try:
-        if map[row][col] == "L":
+        if seat_map[row][col] == "L":
             print(f"Assento {seat} já disponível.")
         else:
-            map[row][col] = "L"
+            seat_map[row][col] = "L"
             print(f"Assento {seat} disponível.")
     except (ValueError, IndexError):
         print("Assento inválido.")

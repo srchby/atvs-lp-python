@@ -21,12 +21,17 @@ def add_stock(name, qty, price):
         
         found = False
         for product in stock:
-            if product[0] == name:
+            if product["name"] == name:
                 found = True
-                product[1] = qty
-                product[2] = price
+                product["quantity"] = qty
+                product["price"] = price
+                break
         if not found:
-            stock.append([name, qty, price])
+            stock.append({
+                "name": name,
+                "quantity": qty,
+                "price": price
+            })
     except ValueError:
         print("\nQuantidade ou Preço inválido\n")
 
@@ -36,23 +41,23 @@ def display_stock():
         return
     print("Estoque: \n")
     for i, product in enumerate(stock):
-        print(f"{i}. Nome: {product[0]} | Quantidade: {product[1]} | Preço: {product[2]} | Valor total: {product[2] * product[1]}")
-        return
+        total_value = product["price"] * product["quantity"]
+        print(f"{i}. Nome: {product['name']} | Quantidade: {product['quantity']} | Preço: {product['price']} | Valor total: {total_value}")
 
 load_stock()
 
 while True:
     save_stock()
-    action = int(input(f"1. Adicionar estoque \n2. Exibir estoque \n3. Sair \n"))
+    action = input("1. Adicionar estoque \n2. Exibir estoque \n3. Sair \n>> ")
     
-    if (action == 1):
-        name = input(f"Nome do produto: \n>>")
-        qty = input(f"Quantidade: \n>>")
-        price = input(f"Preço: \n>>")
+    if action == "1":
+        name = input("Nome do produto: \n>> ")
+        qty = input("Quantidade: \n>> ")
+        price = input("Preço: \n>> ")
         add_stock(name, qty, price)
-    elif (action == 2):
+    elif action == "2":
         display_stock()
-    elif (action == 3):
+    elif action == "3":
         save_stock()
         break
     else:

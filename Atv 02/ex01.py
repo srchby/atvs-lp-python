@@ -15,7 +15,7 @@ def load_tasks():
         tasks = []
     
 def get_task_date(task):
-    day, month, year = map(int, task[1].split('/'))
+    day, month, year = map(int, task['due_date'].split('/'))
     return (year, month, day)
 
 def sorted_tasks(task_list):
@@ -25,14 +25,18 @@ def add_task():
     name = input("Nome da tarefa: \n>> ")
     date = input("Prazo da tarefa (dd/mm/yy): \n>> ")
     day, month, year = map(int, date.split('/'))
-    tasks.append([name, date, False])   
+    tasks.append({
+        'name': name,
+        'due_date': date,
+        'completed': False
+    })   
 
 def mark_task():
     index = input(f"Escolher tarefa \n>> ")
     try:
         index = int(index)
         if 0 <= index < len(tasks):
-            tasks[index][2] = True
+            tasks[index]['completed'] = True
         else:
             print("\nTarefa inválida\n")
     except ValueError:
@@ -44,7 +48,7 @@ while True:
     tasks = sorted_tasks(tasks)
     print(f"Tarefas: ")
     for i, task in enumerate(tasks):
-        print(f"\n{i}. \nNome: {task[0]} \nPrazo: {task[1]} \nCompleto: {task[2]}\n")
+        print(f"\n{i}. \nNome: {task['name']} \nPrazo: {task['due_date']} \nCompleto: {task['completed']}\n")
     
     save_tasks()
     

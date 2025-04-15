@@ -111,3 +111,5 @@ while True:
             connected = False
             connected_account = None
             print("Desconectado")
+        else:
+            print("Ação inválida")
