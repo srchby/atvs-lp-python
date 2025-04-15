@@ -56,4 +56,5 @@ while True:
     elif (action == 3):
         save_tasks()
         break
-        
+    else:
+        print("Ação inválida")
